@@ -3,40 +3,85 @@
 
 	<head>
 		<meta charset="utf-8" />
-		<title>CSS Events</title>
-		<script type="text/javascript" src="css-events.js"></script>
+		<title>CSS Selector Listeners</title>
+		<script type="text/javascript" src="selector-listeners.js"></script>
 		
 		<style>
-			div {
-				margin: 10px;
-				background: lightblue;
+			
+			#selectorText {
+				width: 200px;
 			}
+			
+			button i {
+				font-size: 10px;
+				color: #666;
+			}
+			
+			span.seperator {
+				margin-left: 10px;
+				padding-left: 14px;
+				border-left: 1px dotted #bbb;
+			}
+			
+			#container0, #container1 {
+				min-height: 100px;
+				margin: 10px;
+				background: #eee;
+				border: 1px solid #ccc;
+			}
+			
+			#container0:before, #container1:before {
+				display: block;
+				color: #ccc;
+				font-style: italic;
+				text-align: center;
+			}
+			
+			#container0 > *, #container1 > * {
+				margin: 10px;
+				background: #ADDFFD;
+			}
+			
 		</style>
 	</head>
 	
 <body>
-	<button id="test">Add Element</button>
+	<input id="selectorText" type="text" />
+	<button id="addListener">Add Listener <i>(CSS selector)</i></button>
 	
-	<section id="div0"></section>
-	<section id="div1"></section>
+	<span class="seperator"></span>
+	
+	<input id="tagText" type="text" value="div" />
+	<button id="addElement">Add Element (tag name)</button>
+	
+	<section id="container0"></section>
+	<div id="container1"></div>
 </body>
 
 <script type="text/javascript">
 
-	var foo = function(event){
-		console.log(this, event.target, event.selector);
+(function(){
+	
+	var printListener = function(event){
+		console.log('---------------------Selector Matched!---------------------');
+		console.log('event target:', event.target);
+		console.log('matched selector:', event.selector);
 	}
 	
-	document.addSelectorListener('div', foo);
+	document.getElementById('addListener').addEventListener('click', function(){
+		var value = document.getElementById('selectorText').value;
+		if (value) document.addSelectorListener(value, printListener);
+	}, false);
 	
-	document.body.addSelectorListener('div', foo);
-	
-	document.getElementById('test').addEventListener('click', function(){
-		var div = document.createElement('div');
-		div.innerHTML = "New div added!";
-		document.getElementById('div' + Math.floor(Math.random() * 2)).appendChild(div);
+	document.getElementById('addElement').addEventListener('click', function(){
+		var tag = document.getElementById('tagText').value || 'div';
+		var div = document.createElement(tag);
+		div.innerHTML = tag.toUpperCase() + " element";
+		document.getElementById('container' + Math.floor(Math.random() * 2)).appendChild(div);
 	}, false);
 
+})();
+	
 </script>
 
 </html>
