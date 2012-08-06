@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<title>CSS Events</title>
+		<script type="text/javascript" src="css-events.js"></script>
+		
+		<style>
+			div {
+				margin: 10px;
+				background: lightblue;
+			}
+		</style>
+	</head>
+	
+<body>
+	<button id="test">Add Element</button>
+	
+	<section id="div0"></section>
+	<section id="div1"></section>
+</body>
+
+<script type="text/javascript">
+
+	var foo = function(event){
+		console.log(this, event.target, event.selector);
+	}
+	
+	document.addSelectorListener('div', foo);
+	
+	document.body.addSelectorListener('div', foo);
+	
+	document.getElementById('test').addEventListener('click', function(){
+		var div = document.createElement('div');
+		div.innerHTML = "New div added!";
+		document.getElementById('div' + Math.floor(Math.random() * 2)).appendChild(div);
+	}, false);
+
+</script>
+
+</html>
