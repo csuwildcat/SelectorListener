@@ -1,9 +1,13 @@
 SelectorListener
 ================
 
-Provides the following document/element methods to enable listening for CSS selector rule matches:
+###The Demo###
+
+[Selector Listener Demo](http://csuwldcat.github.com/SelectorListener/)
 
 ###The Basics###
+
+The Selector Listener code provides the following document/element methods to enable listening for CSS selector rule matches. They work just like EventListeners, so you should be right at home:
 
 ```javascript
 
@@ -23,7 +27,7 @@ document.getElementById('foo').removeSelectorListener('.one + .two + .three', on
 
 ```
 
-###Now let's get fancy:###
+###Now let's get fancy###
 
 ```javascript
 
@@ -47,4 +51,3 @@ document.querySelector('#RandomForm').addSelectorListener('slider:out-of-range',
 });
 
 ```
-
