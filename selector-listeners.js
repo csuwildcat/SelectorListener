@@ -56,7 +56,8 @@
 	
 	HTMLDocument.prototype.removeSelectorListener = HTMLElement.prototype.removeSelectorListener = function(selector, fn){
 		var listeners = this.selectorListeners || {},
-			listener = listeners[selectors[selector]] || [],
+			key = selectors[selector],
+			listener = listeners[key] || [],
 			index = listener.indexOf(fn);
 			
 		if (index > -1){
@@ -65,7 +66,8 @@
 			if (!event.count){
 				styles.sheet.deleteRule(styles.sheet.cssRules.item(event.rule));
 				keyframes.removeChild(event.keyframe);
-				delete events[event];
+				delete events[key];
+				delete selectors[selector];
 			}
 			
 			listeners.count--;
