@@ -13,7 +13,7 @@
 			}, this);
 		},
 		prefix = (function() {
-			var duration = 'animation-duration: 0.01s;',
+			var duration = 'animation-duration: 0.001s;',
 				name = 'animation-name: SelectorListener !important;',
 				computed = window.getComputedStyle(document.documentElement, ''),
 				pre = (Array.prototype.slice.call(computed).join('').match(/moz|webkit|ms/)||(computed.OLink===''&&['o']))[0];
@@ -36,7 +36,7 @@
 		else {
 			key = selectors[selector] = 'SelectorListener-' + new Date().getTime();
 			var node = document.createTextNode('@' + (prefix.keyframes ? prefix.css : '') + 'keyframes ' + key + ' {'
-				+'from { clip: rect(1px, auto, auto, auto); } to { clip: rect(0px, auto, auto, auto); }'
+				+'from { outline-color: #fff; } to { outline-color: #000; }'
 			+ '}');
 			keyframes.appendChild(node);
 			styles.sheet.insertRule(selector + prefix.properties.replace(/SelectorListener/g, key), 0);
