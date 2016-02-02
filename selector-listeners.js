@@ -2,6 +2,7 @@
 	
 	var events = {},
 		selectors = {},
+		animationCount = 0,
 		styles = document.createElement('style'),
 		keyframes = document.createElement('style'),
 		head = document.getElementsByTagName('head')[0],
@@ -34,7 +35,7 @@
 			
 		if (key) events[key].count++;
 		else {
-			key = selectors[selector] = 'SelectorListener-' + new Date().getTime();
+			key = selectors[selector] = 'SelectorListener-' + animationCount++;
 			var node = document.createTextNode('@' + (prefix.keyframes ? prefix.css : '') + 'keyframes ' + key + ' {'
 				+'from { outline-color: #fff; } to { outline-color: #000; }'
 			+ '}');
