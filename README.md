@@ -3,7 +3,7 @@ SelectorListener
 
 Provides the following document/element methods to enable listening for CSS selector rule matches:
 
-###The Basics###
+### The Basics ###
 
 ```javascript
 
@@ -23,7 +23,7 @@ document.getElementById('foo').removeSelectorListener('.one + .two + .three', on
 
 ```
 
-###Now let's get fancy:###
+### Now let's get fancy: ###
 
 ```javascript
 

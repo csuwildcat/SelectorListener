@@ -1,5 +1,5 @@
 
-###SelectorListener is available under Apache 2###
+### SelectorListener is available under Apache 2 ###
 
 Copyright 2012 Daniel Buchner
 
