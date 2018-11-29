@@ -64,8 +64,8 @@
 	<input id="tagText" type="text" value="div" />
 	<button id="addElement">Add Element <i>(tag name)</i></button>
 	
-	<section id="container0"></section>
-	<div id="container1"></div>
+	<section class="container" id="container0"></section>
+	<section class="container" id="container1"></section>
 	
 	<div id="console_warning">TURN ON YOUR CONSOLE!</div>
 </body>
@@ -91,6 +91,11 @@
 		var div = document.createElement(tag);
 		div.innerHTML = tag.toUpperCase() + " element";
 		document.getElementById('container' + Math.floor(Math.random() * 2)).appendChild(div);
+  });
+  
+  document.addEventListener('click', function(e){
+    var parent = e.target.parentNode;
+    if (parent && parent.className == 'container') parent.removeChild(e.target);
 	});
 
 })();
