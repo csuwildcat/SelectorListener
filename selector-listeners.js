@@ -26,7 +26,7 @@
 			events[key] = {
         count: 1,
         selector: exp,
-        keyframe: keyframes.appendChild(document.createTextNode('@' + prefix.css + 'keyframes ' + key + ' { to { --selector-listeners: 1 } }')),
+        keyframe: keyframes.appendChild(document.createTextNode('@' + prefix.css + 'keyframes ' + key + ' { to { outline-color: rgba(0,0,0,0) } }')),
         rule: styles.sheet.cssRules[0]
       };
 		} 
