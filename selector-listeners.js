@@ -14,7 +14,7 @@
 	HTMLDocument.prototype.addSelectorListener = HTMLElement.prototype.addSelectorListener = function(exp, fn){
     var atRule = typeof exp === 'string' ? '' : exp[0];
     var selector = atRule ? exp[1] : exp;
-    var exp = atRule ? exp.join(' ') : exp;
+    var exp = atRule ? exp.map(Function.prototype.call, String.prototype.trim).join(' ') : exp;
 		var key = selectors[exp],
 			  listeners = this.selectorListeners = this.selectorListeners || { count: 0 };
 			
