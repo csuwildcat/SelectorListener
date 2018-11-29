@@ -12,10 +12,10 @@
       }
   
 	HTMLDocument.prototype.addSelectorListener = HTMLElement.prototype.addSelectorListener = function(exp, fn){
-    var atRule = typeof exp === 'string' ? '' : exp[0];
-    var selector = atRule ? exp[1] : exp;
-    var exp = atRule ? exp.map(Function.prototype.call, String.prototype.trim).join(' ') : exp;
-		var key = selectors[exp],
+    var atRule = typeof exp === 'string' ? '' : exp[0],
+        selector = atRule ? exp[1] : exp,
+        exp = atRule ? exp.map(Function.prototype.call, String.prototype.trim).join(' ') : exp,
+        key = selectors[exp],
 			  listeners = this.selectorListeners = this.selectorListeners || { count: 0 };
 			
 		if (key) events[key].count++;
@@ -37,8 +37,8 @@
 	};
 	
 	HTMLDocument.prototype.removeSelectorListener = HTMLElement.prototype.removeSelectorListener = function(exp, fn){
-    var exp = typeof exp === 'string' ? exp : exp.join(' ') ;
-		var listeners = this.selectorListeners || {},
+    var exp = typeof exp === 'string' ? exp : exp.join(' '),
+        listeners = this.selectorListeners || {},
 			  key = selectors[exp],
 			  listener = listeners[key] || [],
 			  index = listener.indexOf(fn);
