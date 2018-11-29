@@ -11,8 +11,8 @@
 			body {
 				font-family: Arial;
 			}
-			
-			#selectorText {
+
+      #atRule, #selectorText {
 				width: 200px;
 			}
 			
@@ -21,7 +21,7 @@
 				color: #666;
 			}
 			
-			span.seperator {
+			span.separator {
 				margin-left: 10px;
 				padding-left: 14px;
 				border-left: 1px dotted #bbb;
@@ -55,10 +55,11 @@
 	</head>
 	
 <body>
-	<input id="selectorText" type="text" />
-	<button id="addListener">Add Listener <i>(CSS selector)</i></button>
+  <input id="atRule" type="text" placeholder="@rule wrapper (optional)"/>
+	<input id="selectorText" type="text" placeholder="CSS Selector" />
+	<button id="addListener">Add Listener</button>
 	
-	<span class="seperator"></span>
+	<span class="separator"></span>
 	
 	<input id="tagText" type="text" value="div" />
 	<button id="addElement">Add Element <i>(tag name)</i></button>
@@ -74,22 +75,23 @@
 (function(){
 	
 	var printListener = function(event){
-		console.log('------ Matched! ------');
-		console.log('target:', event.target);
-		console.log('selector:', event.selector);
+    console.log('------ Matched! ------');
+    console.log('selector: ' + event.selector);
+    console.log('event:', event);
 	}
 	
 	document.getElementById('addListener').addEventListener('click', function(){
-		var value = document.getElementById('selectorText').value;
-		if (value) document.addSelectorListener(value, printListener);
-	}, false);
+    var atRule = document.getElementById('atRule').value;
+    var selector = document.getElementById('selectorText').value;
+		if (selector) document.addSelectorListener(atRule ? [atRule, selector] : selector, printListener);
+	});
 	
 	document.getElementById('addElement').addEventListener('click', function(){
 		var tag = document.getElementById('tagText').value || 'div';
 		var div = document.createElement(tag);
 		div.innerHTML = tag.toUpperCase() + " element";
 		document.getElementById('container' + Math.floor(Math.random() * 2)).appendChild(div);
-	}, false);
+	});
 
 })();
 	
