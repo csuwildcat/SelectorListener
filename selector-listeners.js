@@ -20,8 +20,8 @@
 			
 		if (key) events[key].count++;
 		else {
-			key = selectors[exp] = 'SelectorListener-' + animationCount++;
-      var style = selector + '::before { content: ""; ' + prefix.css + 'animation: ' + key + '}';
+			key = selectors[exp] = 'selector-listener-' + animationCount++;
+      var style = selector + '::before { content: ""; ' + prefix.css + 'animation: ' + key + ' 0.01s; }';
 			styles.sheet.insertRule(atRule ? atRule + '{' + style + '}' : style, 0);
 			events[key] = {
         count: 1,
