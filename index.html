@@ -9,36 +9,32 @@
 		<style>
 			
 			body {
+        padding: 1em;
 				font-family: Arial;
 			}
 
-      #atRule, #selectorText {
-				width: 200px;
+      .fields {
+        display: flex;
+        max-width: 500px;
+        margin: 0 0 1em;
+      }
+
+      .fields button {
+        white-space: nowrap;
+      }
+
+      #selectorText,
+      #tagText {
+        flex-grow: 1;
+        margin-right: 0.5em;
 			}
 			
-			button i {
-				font-size: 10px;
-				color: #666;
-			}
-			
-			span.separator {
-				margin-left: 10px;
-				padding-left: 14px;
-				border-left: 1px dotted #bbb;
-			}
-			
-			#container0, #container1 {
+			#container0,
+      #container1 {
 				min-height: 100px;
-				margin: 10px;
+				margin: 1em 0;
 				background: #eee;
 				border: 1px solid #ccc;
-			}
-			
-			#container0:before, #container1:before {
-				display: block;
-				color: #ccc;
-				font-style: italic;
-				text-align: center;
 			}
 			
 			#container0 > *, #container1 > * {
@@ -55,14 +51,14 @@
 	</head>
 	
 <body>
-  <input id="atRule" type="text" placeholder="@rule wrapper (optional)"/>
-	<input id="selectorText" type="text" placeholder="CSS Selector" />
-	<button id="addListener">Add Listener</button>
-	
-	<span class="separator"></span>
-	
-	<input id="tagText" type="text" value="div" />
-	<button id="addElement">Add Element <i>(tag name)</i></button>
+  <section class="fields">
+    <input id="selectorText" type="text" placeholder="Enter at-rules (optional) and a selector (separate with &&)" />
+    <button id="addListener">Add Listener</button>
+  </section>
+  <section class="fields">
+    <input id="tagText" type="text" placeholder="Enter tag name of an element to add" />
+    <button id="addElement">Add Element</button>
+  </section>
 	
 	<section class="container" id="container0"></section>
 	<section class="container" id="container1"></section>
@@ -81,9 +77,10 @@
 	}
 	
 	document.getElementById('addListener').addEventListener('click', function(){
-    var atRule = document.getElementById('atRule').value;
     var selector = document.getElementById('selectorText').value;
-		if (selector) document.addSelectorListener(atRule ? [atRule, selector] : selector, printListener);
+		if (selector) {
+      document.addSelectorListener(selector.split('&&'), printListener);
+    }
 	});
 	
 	document.getElementById('addElement').addEventListener('click', function(){
